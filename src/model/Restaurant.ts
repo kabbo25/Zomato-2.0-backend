@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 
 const menuSchema = new mongoose.Schema({
-    ItemName: {type: String, required: true},
-    ItemPrice: {type: Number, required: true},
+    Name: {type: String, required: true},
+    Price: {type: Number, required: true},
 })
 const restaurantSchema = new mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref: "User"},

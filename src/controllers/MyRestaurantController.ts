@@ -18,6 +18,7 @@ const createMyRestaurant = async (req: Request, res: Response) => {
         newRestaurant.user = new mongoose.Types.ObjectId(req.userId);
         newRestaurant.LastUpdated = new Date();
         await newRestaurant.save();
+        res.send(newRestaurant);
     } catch (error) {
         console.log(error);
         res.status(500).send('failed to create restaurant');

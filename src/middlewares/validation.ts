@@ -1,5 +1,5 @@
-import {body,validationResult} from "express-validator"
-import {Request, Response, NextFunction} from "express";
+import {body, validationResult} from "express-validator"
+import {NextFunction, Request, Response} from "express";
 
 
 const handleValidationErrors = (req: Request, res: Response, next: NextFunction) => {
@@ -23,10 +23,12 @@ export const validateMyRestantRequest = [
     body("City").isString().notEmpty().withMessage("City is required"),
     body("Country").isString().notEmpty().withMessage("Country is required"),
     body("DeliveryTime").isInt({min: 0}).withMessage("Delivery Time is required"),
-    body("DeliverPrice").isFloat({min: 0}).withMessage("Delivery Fee is required"),
+    body("DeliveryPrice")
+        .isFloat({min: 0})
+        .withMessage("Delivery price must be a positive number"),
     body("Cuisine").isArray().withMessage("Cuisine should be array").notEmpty().withMessage("Cuisine is required"),
     body("MenuItems").isArray().withMessage("MenuItems should be array"),
-    body("MenuItems.*Name").notEmpty().withMessage("MenuItems Name is required"),
-    body("MenuItems.*Price").isFloat({min: 0}).withMessage("MenuItems Price is required"),
-    handleValidationErrors
+    body("MenuItems.*.Name").isString().notEmpty().withMessage("MenuItems Name is required"),
+    body("MenuItems.*.Price").isFloat({min: 0}).withMessage("MenuItems Price is required"),
+    handleValidationErrors,
 ]

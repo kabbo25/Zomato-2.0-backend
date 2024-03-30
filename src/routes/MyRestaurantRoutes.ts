@@ -1,6 +1,7 @@
 import express from "express";
 import multer from "multer";
 import MyRestaurantController from "../controllers/MyRestaurantController";
+import {validateMyRestantRequest} from "../middlewares/validation";
 
 const router=express.Router();
 
@@ -12,6 +13,6 @@ const upload=multer({
     }
 });
 
-router.post("/", upload.single("ImageUrl"), MyRestaurantController.createMyRestaurant);
+router.post("/", upload.single("ImageUrl"),validateMyRestantRequest,MyRestaurantController.createMyRestaurant);
 
 export default router;

@@ -22,6 +22,6 @@ app.get("/health", (req: Request, res: Response) => {
 app.use("/api/my/user", MyUserRoutes);
 app.use("/api/my/restaurant", MyRestaurantRoutes);
 
-app.listen(4000, () => {
+app.listen(7000, () => {
     console.log("Server is running on port 4000");
 })

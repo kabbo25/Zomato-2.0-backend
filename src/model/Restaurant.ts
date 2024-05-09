@@ -6,7 +6,7 @@ const menuSchema = new mongoose.Schema({
     Price: {type: Number, required: true},
 })
 const restaurantSchema = new mongoose.Schema({
-    user: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
+    User: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
     RestaurantName: {type: String, required: true},
     City: {type: String, required: true},
     Country: {type: String, required: true},

@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 
 const getCurrentRestaurant = async (req: Request, res: Response) => {
     try {
-        const curRestaurant = await Restaurant.findOne({user: req.userId});
+        const curRestaurant = await Restaurant.findOne({User: req.userId});
         if (!curRestaurant) {
             res.status(404).send({message: "Restaurant not found"});
             return;
@@ -28,7 +28,7 @@ const createMyRestaurant = async (req: Request, res: Response) => {
         const imageResponse = await cloudinary.v2.uploader.upload(dataURI);
         const newRestaurant = new Restaurant(req.body);
         newRestaurant.ImageUrl = imageResponse.url;
-        newRestaurant.user = new mongoose.Types.ObjectId(req.userId);
+        newRestaurant.User = new mongoose.Types.ObjectId(req.userId);
         newRestaurant.LastUpdated = new Date();
         await newRestaurant.save();
         res.send(newRestaurant);

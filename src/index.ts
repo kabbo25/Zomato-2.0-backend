@@ -23,5 +23,5 @@ app.use("/api/my/user", MyUserRoutes);
 app.use("/api/my/restaurant", MyRestaurantRoutes);
 
 app.listen(7000, () => {
-    console.log("Server is running on port 4000");
+    console.log("Server is running on port 7000");
 })
